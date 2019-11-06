@@ -29,9 +29,6 @@
     "url": "https://github.com/digitalbazaar/bedrock-web-payment/issues"
   },
   "homepage": "https://github.com/digitalbazaar/bedrock-web-payment#readme",
-  "peerDependencies": {
-    "bedrock-payment-http": "^0.0.1"
-  },
   "devDependencies": {
     "eslint": "^6.6.0",
     "eslint-config-digitalbazaar": "^2.0.1",
