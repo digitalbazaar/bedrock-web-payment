@@ -38,6 +38,10 @@ export default {
       type: Boolean,
       default: false
     },
+    disableCard: {
+      type: Array,
+      default: () => ['amex']
+    },
     // This is a function passed in from the payment form
     // that determines how much the customer is charged.
     // @see https://developer.paypal.com/docs/api/orders/v2/
@@ -146,7 +150,7 @@ export default {
       paypal.Buttons(options).render('#paypal-button');
     },
     insertScript() {
-      const {clientId} = this;
+      const {clientId, disableCard} = this;
       if(!clientId) {
         throw new Error('PayPal button requires a clientId');
       }
@@ -155,6 +159,10 @@ export default {
       const script = document.createElement('script');
       script.src = 'https://www.paypal.com/sdk/js?' +
         `client-id=${encodeURIComponent(clientId)}`;
+      if(disableCard.length > 0) {
+        const cardList = encodeURIComponent(disableCard.join(','));
+        script.src += `&disable-card=${cardList}`;
+      }
       script.async = true;
       script.addEventListener('load', this.handleLoad);
       script.addEventListener('error', this.handleError);
