@@ -40,7 +40,7 @@ export default {
     },
     disableCard: {
       type: Array,
-      default: () => ['amex']
+      default: () => []
     },
     // This is a function passed in from the payment form
     // that determines how much the customer is charged.
