@@ -3,6 +3,12 @@
     <q-spinner
       v-if="loading" />
     <q-banner
+      v-if="noCredentials"
+      class="text-white bg-red">
+      PayPal Credentials are missing.
+      Please contact your system admin.
+    </q-banner>
+    <q-banner
       v-if="error"
       class="text-white bg-red">
       We are terribly sorry, but PayPal is not available
@@ -57,6 +63,11 @@ export default {
       loading: false,
       error: null
     };
+  },
+  computed: {
+    noCredentials() {
+      return !this.loading && !this.clientId;
+    }
   },
   mounted() {
     // if the paypal script has not been inserted
